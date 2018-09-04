@@ -1,6 +1,6 @@
-# webpack-template
+# webpack-vue-spa-template
 
-> webpack-templat
+> webpack-vue-spa-template (webpack config for single page web application ,base on vue cli
 
 ## Build Setup
 
