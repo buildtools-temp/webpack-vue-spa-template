@@ -1,7 +1,7 @@
 {
   "name": "webpack-vue-spa-template",
   "version": "1.0.0",
-  "description": "webpack-vue-spa-template",
+  "description": "webpack-vue-spa-template (webpack config for single page web application ,base on vue cli)",
   "author": "Broccoli spring( gcx ) <Lensgcx@163.com>",
   "private": true,
   "scripts": {
@@ -13,6 +13,15 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js"
   },
+  "keywords": [
+    "vue",
+    "vue-cli",
+    "webpack",
+    "frontend",
+    "javascript",
+    "es6",
+    "spa"
+  ],
   "dependencies": {
     "vue": "^2.5.2"
   },
@@ -84,5 +93,13 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "homepage": "https://github.com/buildtools-temp/webpack-vue-spa-template",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildtools-temp/webpack-vue-spa-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/buildtools-temp/webpack-vue-spa-template/issues"
+  }
 }
