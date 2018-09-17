@@ -13,11 +13,18 @@ const portfinder = require('portfinder');
 const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
 
+console.log(1222222222)
+console.log(HOST)
+console.log(PORT)
+console.log(1222222222)
+
 //将两个配置对象，进行合并( 合并了base中的webpack配置项 )
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
-    //增加了cssSourceMap的功能
-    rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap, usePostCSS: true})
+    rules: utils.styleLoaders({
+      sourceMap: config.dev.cssSourceMap,
+      usePostCSS: true//补全css代码的兼容性前缀
+    })
   },
   // cheap-module-eval-source-map is faster for development
   // 增加了 devtools，通过注释的英文翻译，可以知道cheap-module-eval-source-map使得开发更快
