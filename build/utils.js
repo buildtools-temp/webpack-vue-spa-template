@@ -42,6 +42,12 @@ exports.cssLoaders = function (options) {
     }
   };
 
+  /*-----------------------------------------------------------------------------*/
+  /*   补全css代码的兼容性前缀             			                               */
+  /*   需要在根目录新建一个.postcssrc.js 配置文件，不然会报找不到 postcss config 的错  */
+  /*   还需要依次安装：
+  /*  cnpm i postcss-import postcss-loader postcss-url --save-dev                */
+  /*-----------------------------------------------------------------------------*/
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
@@ -49,10 +55,16 @@ exports.cssLoaders = function (options) {
     }
   };
 
-  // generate loader string to be used with extract text plugin
+  /**
+   * 生成加载器 - generate loader string to be used with extract text plugin
+   * @param loader                loader 的名称
+   * @param loaderOptions         loader 的配置项
+   * @returns {*}
+   */
   function generateLoaders(loader, loaderOptions) {
+    //是否需要补全css代码的兼容性前缀配置，需要的话把 postcssLoader 注入
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
-
+    //注入loader的相关配置
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
@@ -62,10 +74,16 @@ exports.cssLoaders = function (options) {
       })
     }
 
-    // Extract CSS when that option is specified
-    // (which is the case during production build)
+    /*----------------------------------------------------------------------------------------*/
+    /*  Extract CSS when that option is specified (which is the case during production build) */
+    /*  是否需要分离出js中的css代码,然后分别进行打包                                               */
+    /*  此项目中，development 时不分离， production 时 分离                                      */
+    /*----------------------------------------------------------------------------------------*/
     if (options.extract) {
-      //分离出js中的css代码,然后分别进行打
+      /**
+       * extract默认行为先使用css-loader编译css，如果一切顺利的话，结束之后把css导出到规定的文件去。
+       * 但是如果编译过程中出现了错误，则继续使用vue-style-loader处理css。
+       **/
       return ExtractTextPlugin.extract({
         use: loaders,
         fallback: 'vue-style-loader'
@@ -75,7 +93,12 @@ exports.cssLoaders = function (options) {
     }
   }
 
-  // https://vue-loader.vuejs.org/en/configurations/extract-css.html
+  console.log(767676767667676);
+
+  console.log(generateLoaders('sass', {indentedSyntax: true}));
+
+  console.log(767676767667676);
+
   /**
    * 同时，它返回一个对象，其中包含了css预编译器(less、sass、stylus)loader生成方法等,
    * 如果你的文档明确只需要一门css语言，那么可以稍微清楚一些语言，同时可以减少npm包的大小(毕竟这是一个令人烦躁的东西)
@@ -89,6 +112,7 @@ exports.cssLoaders = function (options) {
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }
+  // 以上参考 ： https://vue-loader.vuejs.org/en/configurations/extract-css.html
 };
 
 /**
